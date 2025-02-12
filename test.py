@@ -1,7 +1,7 @@
 import sample_opencl_lib
 import unittest
 import time
-import numpy as np
+
 
 class OpenCLTests(unittest.TestCase):
     @classmethod

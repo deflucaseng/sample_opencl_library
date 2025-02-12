@@ -1,5 +1,4 @@
 #include "operationmanager.hpp"
-
 std::string getOpenCLErrorString(cl_int error) {
     switch (error) {
         case CL_SUCCESS: return "CL_SUCCESS";
@@ -81,9 +80,11 @@ float* OperationManager::element_wise_operation(operation_types op_type, float *
 
 
     auto kernel_info = kernel_manager.getKernelSource(op_type);
+
 	cl_program program = clCreateProgramWithSource(context, 1, kernel_info.source, NULL, &err);
 	if (err != CL_SUCCESS)
 	{
+		std::cout << getOpenCLErrorString(err) << std::endl;
 		throw std::runtime_error("Failed to create program");
 	}
 
